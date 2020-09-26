@@ -19,12 +19,23 @@ public class EnemyMovement : MonoBehaviour
     {
         if(MoveRight){
             transform.Translate(2 * Time.deltaTime * speed , 0 , 0);
-            EnemyAnim.SetBool("MoveRight",true);
+            EnemyAnim.SetBool("Move Right",true);
 
         }
         else{
             transform.Translate(-2 * Time.deltaTime * speed , 0 , 0);
-            EnemyAnim.SetBool("MoveRight",false);
+            EnemyAnim.SetBool("Move Right",false);
+        }
+    }
+    void OnTriggerEnter2D(Collider2D trig)
+    {
+        if(trig.gameObject.CompareTag("turn")){
+                if(MoveRight){
+                    MoveRight = false;
+                }
+                else{
+                    MoveRight = true;
+                }
         }
     }
 }
